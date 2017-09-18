@@ -1,3 +1,6 @@
+var command = require('./command')
+
+
 // Output a prompt
 process.stdout.write('prompt > ');
 
@@ -6,9 +9,11 @@ process.stdin.on('data', function (data) {
   var cmd = data.toString().trim(); // remove the newline
 
     if (cmd === 'pwd'){
-        process.stdout.write(process.cwd());
+        return command.pwd();
     } else if (cmd === 'date'){
-        process.stdout.write(new Date());
+        return command.date();
+    } else if (cmd === 'ls') {
+        return command.ls();
     }
 //   switch (cmd){
 //       case 'pwd':
@@ -21,6 +26,6 @@ process.stdin.on('data', function (data) {
   process.stdout.write('\nprompt > ');
 
 });
-
+// console.log(process.stdout.write(Date()));
 //console.log(process.cwd());
 
