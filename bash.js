@@ -9,7 +9,7 @@ process.stdin.on('data', function (data) {
   var data = data.toString().trim();
   var cmd = data.split(' ')[0];
   var args = data.split(' ').slice(1);
-
+  // console.log(args);
   return command[cmd](args);
 
   process.stdout.write('\nprompt > ');

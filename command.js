@@ -1,4 +1,5 @@
 var fs = require('fs');
+
 function pwd() {
         return process.stdout.write(process.cwd());
 } 
@@ -29,9 +30,25 @@ function echo(args) {
         }
         return process.stdout.write(args.join(' '));
 }
+
+function cat(args){
+        var file = args[0];
+        console.log(file);
+        fs.readFile(file, (err,data) => {
+                        if (err) throw err;
+                        process.stdout.write(data);
+        });
+}
+
+function head(){
+        
+}
+
 module.exports = {
     pwd: pwd,
     date: date,
     ls: ls,
-    echo: echo
+    echo: echo,
+    cat: cat,
+    head:head
 }
