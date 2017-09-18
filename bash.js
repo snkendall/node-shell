@@ -6,23 +6,12 @@ process.stdout.write('prompt > ');
 
 // The stdin 'data' event fires after a user types in a line
 process.stdin.on('data', function (data) {
-  var cmd = data.toString().trim(); // remove the newline
+  var data = data.toString().trim();
+  var cmd = data.split(' ')[0];
+  var args = data.split(' ').slice(1);
 
-    if (cmd === 'pwd'){
-        return command.pwd();
-    } else if (cmd === 'date'){
-        return command.date();
-    } else if (cmd === 'ls') {
-        return command.ls();
-    }
-//   switch (cmd){
-//       case 'pwd':
-//         process.stdout.write(process.cwd());
-//         break;
-//         default:
-//   }
+  return command[cmd](args);
 
-  //process.stdout.write('You typed: ' + cmd);
   process.stdout.write('\nprompt > ');
 
 });

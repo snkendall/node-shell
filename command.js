@@ -1,12 +1,8 @@
 var fs = require('fs');
-
-
-
-
-
 function pwd() {
         return process.stdout.write(process.cwd());
 } 
+
 function date() {
         return process.stdout.write(Date());
 }
@@ -21,10 +17,21 @@ function ls() {
       });
 }
 
-
-
+function echo(args) {
+        var extraCommand;
+        args.map(function(el){
+                if (el[0] === '$'){
+                        extraCommand = el.slice(1);
+                }
+        });
+        if (extraCommand){
+                return process.stdout.write(process.env(extraCommand));
+        }
+        return process.stdout.write(args.join(' '));
+}
 module.exports = {
     pwd: pwd,
     date: date,
-    ls:ls
+    ls: ls,
+    echo: echo
 }
